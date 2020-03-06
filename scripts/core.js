@@ -84,7 +84,7 @@ class Game {
   handleStart(evt) {
     const touches = evt.changedTouches;
     const user = this.character;
-    cs(touches);
+    cs('touches', touches);
 
     if (touches[0].pageX > user.getX()) {
       this.renderUser(user, 1, 0);
