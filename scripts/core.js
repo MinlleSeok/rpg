@@ -10,10 +10,8 @@ class User {
   }
 
   getImg() {
-    // this.img.setAttribute('style', `position: absolute; top: ${this.y}px; left: ${this.x}px;`);
     this.img.style.top = `${this.y}px`;
     this.img.style.left = `${this.x}px`;
-    console.log(`this.x = ${this.x}`);
     return this.img;
   }
 
@@ -28,7 +26,6 @@ class User {
   move(x, y) {
     const nextX = this.x + x * 30 + parseInt(this.img.style.width);
     const nextY = this.y + y * 30 + parseInt(this.img.style.height);
-    cs(nextX);
 
     if (nextX < window.innerWidth && nextX >= parseInt(this.img.style.width)) {
       this.x += x * 30;
@@ -39,20 +36,17 @@ class User {
     ) {
       this.y += y * 30;
     }
-    cs(nextY);
-    cs(document.body.clientHeight);
   }
 }
-function cs(test) {
+function cs(log, test) {
   const debug = document.getElementById("debug");
-  debug.textContent = JSON.stringify(`this.test= ${test}`);
-  console.log(test);
+  debug.textContent = JSON.stringify(`${log}= ${test}`);
+  console.log(`${log}= ${test}`);
 }
 
 class Game {
   constructor() {
     this.character = new User();
-
     this.renderUser(this.character, 0, 0);
   }
 
@@ -80,20 +74,18 @@ class Game {
     const userImg = user.getImg();
 
     if (canvas.contains(userImg)) {
-      console.log(`re render`);
       canvas.removeChild(userImg);
       canvas.appendChild(userImg);
     } else {
-      console.log(`init render`);
       canvas.appendChild(userImg);
     }
   }
 
   handleStart(evt) {
-    // evt.preventDefault();
     const touches = evt.changedTouches;
     const user = this.character;
     cs(touches);
+
     if (touches[0].pageX > user.getX()) {
       this.renderUser(user, 1, 0);
     }
@@ -112,8 +104,6 @@ class Game {
   }
 
   moveEvent(e) {
-    console.log(this.name);
-
     switch (e.keyCode) {
       case 37:
         this.renderUser(this.character, -1, 0);
