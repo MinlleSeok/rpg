@@ -3,10 +3,10 @@ class User {
     this.img = document.createElement("img");
     this.img.src = "assets/images/dinosaur.svg";
     this.img.style.position = "absolute";
-    this.img.style.width = "300px";
-    this.img.style.height = "200px";
-    this.x = 0;
-    this.y = 0;
+    this.img.style.width = "100px";
+    this.img.style.height = "80px";
+    this.x = 20;
+    this.y = 20;
   }
 
   getImg() {
